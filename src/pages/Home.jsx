@@ -3,42 +3,20 @@ import { CiSearch } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import Card from "../Card";
 import Categories from "../Categories";
+import { useGetProducts } from "../hooksQuery/useGetProducts";
+import { useGetCategories } from "../hooksQuery/useGetCategories.js";
 
 function Home() {
-  const [cards, setCards] = useState([]);
-  const [isLoadingCards, setIsLoadingCards] = useState(true);
-  const [categories, setCategories] = useState([{ id: null, name: "all" }]);
-  const [isLoadingCategories, setIsLoadingCategories] = useState(true);
   const [selectedСategories, setSelectedCategories] = useState(null);
   const [searchValue, setSearchValue] = useState("");
 
-  console.log({ selectedСategories });
+  const { isPending: isPendingProducts, data: products } =
+    useGetProducts(selectedСategories);
 
-  useEffect(() => {
-    setIsLoadingCards(true);
-
-    const category = selectedСategories
-      ? `categoryId=${selectedСategories}`
-      : "";
-
-    fetch(`https://api.escuelajs.co/api/v1/products?${category}`)
-      .then((res) => res.json())
-      .then((json) => {
-        setCards(json);
-      })
-      .catch((err) => alert("Error..."))
-      .finally(() => setIsLoadingCards(false));
-  }, [selectedСategories]);
-
-  useEffect(() => {
-    setIsLoadingCategories(true);
-
-    fetch(`https://api.escuelajs.co/api/v1/categories`)
-      .then((res) => res.json())
-      .then((json) => setCategories((prev) => [...prev, ...json]))
-      .catch((err) => alert("Error..."))
-      .finally(() => setIsLoadingCategories(false));
-  }, []);
+  const {
+    isPending: isPendingCategories,
+    data: categories = [{ id: null, name: "all" }],
+  } = useGetCategories();
 
   return (
     <>
@@ -59,18 +37,18 @@ function Home() {
 
       <div className="shop_container">
         <div className="shop_cards">
-          {isLoadingCards ? (
+          {isPendingProducts ? (
             <h2>Loading...</h2>
           ) : (
-            cards
-              .filter((obj) =>
+            products
+              ?.filter((obj) =>
                 obj.title.toLowerCase().includes(searchValue.toLowerCase())
               )
               .map((obj, index) => <Card key={index} {...obj} />)
           )}
         </div>
         <div className="shop_categories">
-          {isLoadingCategories ? (
+          {isPendingCategories ? (
             <h2>Loading categories...</h2>
           ) : (
             <Categories
