@@ -15,7 +15,9 @@ function Layout() {
           </Link>
           <Link to="/cart" className="header_button">
             <FaShoppingCart className="header_icon" />
-            <span className="header_cart_number">{cart.length}</span>
+            {!!cart.length && (
+              <span className="header_cart_number">{cart.length}</span>
+            )}
           </Link>
         </header>
 
