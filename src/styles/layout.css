@@ -38,6 +38,7 @@
 
 .shop_content {
   padding: 12px;
+  min-height: calc(100vh - 95px - 51.52px);
   /* max-width: 1200px; */
 }
 
