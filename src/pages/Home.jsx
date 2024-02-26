@@ -10,8 +10,10 @@ function Home() {
   const [selectedСategories, setSelectedCategories] = useState(null);
   const [searchValue, setSearchValue] = useState("");
 
-  const { isPending: isPendingProducts, data: products } =
-    useGetProducts(selectedСategories);
+  const { isPending: isPendingProducts, data: products } = useGetProducts(
+    selectedСategories,
+    searchValue
+  );
 
   const {
     isPending: isPendingCategories,
@@ -40,11 +42,7 @@ function Home() {
           {isPendingProducts ? (
             <h2>Loading...</h2>
           ) : (
-            products
-              ?.filter((obj) =>
-                obj.title.toLowerCase().includes(searchValue.toLowerCase())
-              )
-              .map((obj, index) => <Card key={index} {...obj} />)
+            products?.map((obj, index) => <Card key={index} {...obj} />)
           )}
         </div>
         <div className="shop_categories">
