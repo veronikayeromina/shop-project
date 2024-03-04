@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
-import { useCart } from "./providers/CartProvider";
+import { useCart } from "../providers/CartProvider";
 import { TiMinus } from "react-icons/ti";
 
 function CartControl({ id }) {

@@ -3,6 +3,9 @@
 @import "./styles/product.css";
 @import "./styles/categories.css";
 @import "./styles/cart.css";
+@import "./styles/login.css";
+@import "./styles/input.css";
+@import "./styles/signup.css";
 
 ::-webkit-scrollbar {
   width: 20px;

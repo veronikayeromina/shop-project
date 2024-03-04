@@ -1,6 +1,6 @@
 import React from "react";
 import { useCart } from "../providers/CartProvider";
-import CartControl from "../CartControl";
+import CartControl from "../components/CartControl";
 import Logo from "../images/cart-image.png";
 
 export function CartPage() {

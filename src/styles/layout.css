@@ -36,6 +36,31 @@
   height: 20px;
 }
 
+.header_button_registration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  border-radius: 6px;
+  border: 1px solid rgb(51, 51, 51);
+  padding: 4px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  width: 85px;
+}
+
+.header_button_signup {
+  width: 108px;
+}
+.header_button_group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 .shop_content {
   padding: 12px;
   min-height: calc(100vh - 95px - 51.52px);
