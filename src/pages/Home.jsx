@@ -1,20 +1,23 @@
 import "../App.css";
 import { CiSearch } from "react-icons/ci";
-import { useEffect, useState } from "react";
-import Card from "../Card";
-import Categories from "../Categories";
+import { useState } from "react";
+import Card from "../components/Card";
+import Categories from "../components/Categories";
 import { useGetProducts } from "../hooksQuery/useGetProducts";
-import { useGetCategories } from "../hooksQuery/useGetCategories.js";
+import { useGetCategories } from "../hooksQuery/useGetCategories";
+import SkeletonCard from "../components/SkeletonCard";
 
 function Home() {
   const [selectedСategories, setSelectedCategories] = useState(null);
   const [searchValue, setSearchValue] = useState("");
 
-  const { isPending: isPendingProducts, data: products } =
-    useGetProducts(selectedСategories);
+  const { isLoading, data: products } = useGetProducts(
+    selectedСategories,
+    searchValue
+  );
 
   const {
-    isPending: isPendingCategories,
+    isLoading: isLoadingCategories,
     data: categories = [{ id: null, name: "all" }],
   } = useGetCategories();
 
@@ -37,18 +40,12 @@ function Home() {
 
       <div className="shop_container">
         <div className="shop_cards">
-          {isPendingProducts ? (
-            <h2>Loading...</h2>
-          ) : (
-            products
-              ?.filter((obj) =>
-                obj.title.toLowerCase().includes(searchValue.toLowerCase())
-              )
-              .map((obj, index) => <Card key={index} {...obj} />)
-          )}
+          {isLoading
+            ? [...new Array(10)].map((index) => <SkeletonCard key={index} />)
+            : products?.map((obj, index) => <Card key={index} {...obj} />)}
         </div>
         <div className="shop_categories">
-          {isPendingCategories ? (
+          {isLoadingCategories ? (
             <h2>Loading categories...</h2>
           ) : (
             <Categories

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Gallery from "../Gallery";
 import { MdOutlineKeyboardArrowLeft } from "react-icons/md";
+import Gallery from "../components/Gallery";
 
 function Product() {
   const [product, setProduct] = useState(null);

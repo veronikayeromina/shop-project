@@ -1,0 +1,11 @@
+.signup-form .input_group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .signup-form .input_group {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,37 @@
+.input_label {
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+}
+
+.input_box {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid rgb(38, 38, 38);
+  background-color: rgb(20, 20, 20);
+  caret-color: rgb(112, 59, 247);
+  color: white;
+  line-height: 24px;
+}
+
+.input:focus-visible {
+  outline: 1px solid rgb(112, 59, 247);
+}
+
+@media (max-width: 1024px) {
+  .input {
+    padding: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .input {
+    padding: 8px;
+  }
+}
